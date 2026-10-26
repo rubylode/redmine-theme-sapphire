@@ -198,7 +198,8 @@ body #header { border-block-end: 1px solid var(--oc-gray-3); }
     padding: 16px 16px 10px;
     min-block-size: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
     text-align: start;
