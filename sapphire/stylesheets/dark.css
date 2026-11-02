@@ -1,0 +1,126 @@
+/* Rubylode Sapphire, a theme for Redmine 7
+ * Copyright (C) 2026  Nick Gorbikoff
+ * GNU General Public License, version 2 or later. See the LICENSE file.
+ * Generated from the shared base of the Rubylode themes: a change made here is overwritten by the next build. */
+
+/* Dark, from the system setting (prefers-color-scheme). Every dark value and rule is in this one file, loaded last:
+ * remove its import from responsive.css to keep the theme light-only. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+
+  /* Sapphire's tokens, dark values: Atlassian-style charcoal with a lighter blue for links. A name not set here keeps its light
+   * value from tokens.css. */
+  :root {
+    --theme-page: #1d2125;
+    --theme-surface: #1d2125;
+    --theme-surface-sunken: #22272b;
+    --theme-surface-hover: #09326c;
+    --theme-line: #38414a;
+    --theme-line-soft: #2c333a;
+    --theme-line-strong: #6b7a89;
+
+    --theme-ink: #f1f2f4;
+    --theme-ink-soft: #dee4ea;
+    --theme-ink-muted: #9fadbc;
+
+    --theme-accent-0: #09326c;
+    --theme-accent-1: #0b3d85;
+    --theme-accent-2: #1558bc;
+    --theme-accent-8: #85b8ff;
+    --theme-accent-9: #cce0ff;
+    --theme-accent-1-rgb: 11, 61, 133;
+
+    --theme-secondary-pale: #2b273f;
+    --theme-tertiary-pale: #3d3004;
+    --theme-accent-pale: #09326c;
+
+    --theme-link: #579dff;
+    --theme-link-hover: #85b8ff;
+    --theme-redmine-accent: #579dff;
+    --theme-redmine-accent-rgb: 87, 157, 255;
+
+    --theme-header-background: #161a1d;
+    --theme-header-background-solid: #161a1d;
+    --theme-header-link: #c7d1db;
+    --theme-header-hover-background: #282e33;
+    --theme-header-line: #2c333a;
+    --theme-header-field-background: #1d2125;
+    --theme-header-field-border: #6b7a89;
+
+    --theme-button-background: #282e33;
+    --theme-button-border: #38414a;
+    --theme-button-ink: #dee4ea;
+    --theme-danger-soft: #42221f;
+    --theme-danger-soft-border: #7f312b;
+    --theme-danger-ink: #ffaea5;
+
+    --theme-focus: #579dff;
+    --theme-focus-halo: rgba(87, 157, 255, 0.3);
+
+    --theme-status-new: #9fadbc;
+    --theme-status-in-progress: #579dff;
+    --theme-status-resolved: #4bce97;
+    --theme-status-feedback: #f5cd47;
+    --theme-status-closed: #4bce97;
+    --theme-status-rejected: #f87168;
+    --theme-success: #4bce97;
+    --theme-warning: #f38a3f;
+    --theme-danger: #f87168;
+
+    --theme-chip-ink-mix: #ffffff;
+    --theme-chip-ink-share: 55%;
+    --theme-chip-fill-share: 22%;
+
+    --theme-shadow-popup: 0 8px 12px rgba(3, 4, 4, 0.6), 0 0 1px rgba(3, 4, 4, 0.8);
+    --theme-shadow-header-scrolled: 0 2px 6px rgba(0, 0, 0, 0.5);
+
+    /* Code blocks stay light: Redmine's syntax colours are made for a light background. */
+    --theme-code-background: #f1f2f4;
+    --theme-code-ink: #172b4d;
+
+    --theme-success-ink: #7ee2b8;
+    --theme-success-soft: #164b35;
+    --theme-caution-ink: #f5cd47;
+    --theme-caution-soft: #533f04;
+
+    --theme-flash-success-background: #164b35;
+    --theme-flash-success-border: #1f845a;
+    --theme-flash-success-ink: #baf3db;
+    --theme-flash-warning-background: #533f04;
+    --theme-flash-warning-border: #946f00;
+    --theme-flash-warning-ink: #f8e6a0;
+    --theme-activity-edit-ink: #b8acf6;
+    --theme-activity-wiki-ink: #fea362;
+    --theme-search-highlight-ink: #f8e6a0;
+    --theme-diff-removed: #42221f;
+    --theme-diff-added: #164b35;
+    --theme-gantt-late-label: #fea362;
+
+    /* The select arrow is drawn in a light grey. */
+    --theme-select-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239fadbc' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --theme-search-field-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239fadbc' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+    --theme-project-jump-arrow-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239fadbc' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+    /* Redmine's own palette, dark. --oc-white is the panel colour, so the base sets white text on colour by hand. */
+    --theme-redmine-white: var(--theme-surface);
+    --theme-neutral-0: #22272b;
+    --theme-neutral-1: #282e33;
+    --theme-neutral-2: #2c333a;
+    --theme-neutral-3: #38414a;
+    --theme-neutral-4: #454f59;
+    --theme-neutral-5: #9fadbc;
+    --theme-neutral-6: #b6c2cf;
+    --theme-neutral-7: #c7d1db;
+    --theme-neutral-8: #dee4ea;
+    --theme-neutral-9: #f1f2f4;
+    --theme-neutral-9-rgb: 241, 242, 244;
+  }
+
+  /* White text on colour: Redmine writes it with --oc-white, which is a dark surface in the dark scheme. */
+  [class*="avatar-color-"], span.badge.badge-count, .pagination ul.pages li.current span, .pagination ul.pages li.current a { color: var(--theme-ink-on-colour); }
+  .avatar-color-2 { color: var(--theme-ink-on-light-colour); }
+  .avatar-color-5 { background-color: var(--theme-primary); }
+  a.issue.tracker-1, a.issue.tracker-1:visited { color: var(--theme-danger-ink); }
+}

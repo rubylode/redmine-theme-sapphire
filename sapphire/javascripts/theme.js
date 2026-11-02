@@ -1,68 +1,45 @@
-/* Sapphire, a theme for Redmine 7
+/* Rubylode Sapphire, a theme for Redmine 7
  * Copyright (C) 2026  Nick Gorbikoff
  * GNU General Public License, version 2 or later. See the LICENSE file.
- *
- * A small script that adds three things CSS cannot: a lozenge around the status text, initials next to assignees, and a
- * breadcrumb above the page title. It reads the page and writes nothing to Redmine. Without it the theme still works. */
+ * Generated from the shared base of the Rubylode themes: a change made here is overwritten by the next build. */
+
+/* Two small touches CSS cannot do alone. It only reads the page and writes nothing to Redmine; without it the theme still works.
+ *  1. In an issue list grouped by status, each group row gets data-group-status with the status id of its issues, so the
+ *     stylesheet can put the status dot beside the group name.
+ *  2. Once the page is scrolled, the body gets the class page-scrolled, which gives the top bar a soft shadow. */
 (function () {
   "use strict";
 
-  function addLozenges() {
-    document.querySelectorAll("table.list td.status").forEach(function (cell) {
-      var text = cell.textContent.trim();
-      if (!text || cell.querySelector(".lozenge")) { return; }
-      var lozenge = document.createElement("span");
-      lozenge.className = "lozenge";
-      lozenge.textContent = text;
-      cell.textContent = "";
-      cell.appendChild(lozenge);
+  function tagStatusGroups() {
+    document.querySelectorAll("table.list.issues tr.group").forEach(function (group) {
+      var row = group.nextElementSibling;
+      while (row && !row.classList.contains("group") && !row.classList.contains("issue")) { row = row.nextElementSibling; }
+      if (!row || !row.classList.contains("issue")) { return; }
+      var match = row.className.match(/(?:^|\s)status-(\d+)(?:\s|$)/);
+      if (!match) { return; }
+      var statusIds = [];
+      for (var next = row; next && !next.classList.contains("group"); next = next.nextElementSibling) {
+        var found = next.className.match(/(?:^|\s)status-(\d+)(?:\s|$)/);
+        if (found && statusIds.indexOf(found[1]) === -1) { statusIds.push(found[1]); }
+      }
+      if (statusIds.length === 1) { group.setAttribute("data-group-status", statusIds[0]); }
     });
   }
 
-  function addInitials() {
-    document.querySelectorAll("table.list td.assigned_to").forEach(function (cell) {
-      var link = cell.querySelector("a");
-      if (!link || cell.querySelector(".assignee-initials")) { return; }
-      var words = link.textContent.trim().split(/\s+/);
-      var initials = (words[0][0] + (words.length > 1 ? words[words.length - 1][0] : "")).toUpperCase();
-      var sum = 0;
-      for (var index = 0; index < initials.length; index++) { sum += initials.charCodeAt(index); }
-      var badge = document.createElement("span");
-      badge.className = "assignee-initials tone-" + (sum % 6);
-      badge.setAttribute("aria-hidden", "true");
-      badge.textContent = initials;
-      badge.title = link.textContent.trim();
-      link.classList.add("assignee-name");
-      cell.insertBefore(badge, cell.firstChild);
-    });
+  function watchScroll() {
+    var update = function () { document.body.classList.toggle("page-scrolled", window.scrollY > 4); };
+    window.addEventListener("scroll", update, { passive: true });
+    update();
   }
 
-  function addBreadcrumb() {
-    var title = document.querySelector("#content > h2");
-    var project = document.querySelector("#header h1 a:last-of-type, #header h1 .current-project");
-    if (!title || !project || document.querySelector("nav.page-breadcrumb")) { return; }
-    var nav = document.createElement("nav");
-    nav.className = "page-breadcrumb";
-    nav.setAttribute("aria-label", "Breadcrumb");
-    var projects = document.createElement("a");
-    projects.href = "/projects";
-    projects.textContent = "Projects";
-    var current = document.createElement("a");
-    current.href = project.getAttribute("href") || "#";
-    current.textContent = project.textContent.trim();
-    var separator = document.createElement("span");
-    separator.textContent = "/";
-    nav.appendChild(projects);
-    nav.appendChild(separator);
-    nav.appendChild(current);
-    title.insertAdjacentElement("beforebegin", nav);
+  function start() {
+    tagStatusGroups();
+    watchScroll();
   }
 
-  function run() {
-    addLozenges();
-    addInitials();
-    addBreadcrumb();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
   }
-
-  if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", run); } else { run(); }
 })();
