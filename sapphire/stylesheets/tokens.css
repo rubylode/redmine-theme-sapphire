@@ -170,6 +170,15 @@
   --theme-neutral-8: #2c3e5d;
   --theme-neutral-9: #0d1f3d; /* the to-do page mixes this at 62 percent for its counts, so it needs to be this dark to reach AA */
   --theme-neutral-9-rgb: 13, 31, 61;
+
+/* The six colours of the round assignee initials. White text on each reaches 4.5:1, so they stay the same in dark. */
+--theme-initials-ink: #ffffff;
+--theme-initials-tone-0: #6554c0;
+--theme-initials-tone-1: #0c66e4;
+--theme-initials-tone-2: #1f845a;
+--theme-initials-tone-3: #a54800;
+--theme-initials-tone-4: #ae2e24;
+--theme-initials-tone-5: #206a83;
 }
 
 /* Redmine's palette, pointed at the tokens. Redmine 7 colours itself with the Open Color variables (--oc-*) and a few

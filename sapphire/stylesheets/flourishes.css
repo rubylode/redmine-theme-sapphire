@@ -4,9 +4,10 @@
  * Generated from the shared base of the Rubylode themes: a change made here is overwritten by the next build. */
 
 /* Sapphire's own touches, the ones tokens cannot express. The project sidebar is the base's sidebar layout ("layout": "sidebar"
- * in theme.json), so two things are left here:
+ * in theme.json), so three things are left here:
  *  1. Status is a square-cornered lozenge and priority is an arrow, in the issue list; the tracker is a small coloured square.
- *  2. The phone slide-out menu is dark in both schemes. */
+ *  2. The phone slide-out menu is dark in both schemes.
+ *  3. The round assignee initials and the breadcrumb that extra.js adds. */
 
 /* ==========================================================================
    1. The issue list: a square-cornered lozenge for the status, an arrow for the priority, a square for the tracker
@@ -104,3 +105,33 @@ body .flyout-menu a.selected, body .flyout-menu a.selected:link, body .flyout-me
 body .flyout-menu a:hover { color: #ffffff; }
 body .flyout-menu ul li { border-block-color: #2c333a; }
 body .flyout-menu .flyout-menu__avatar { background: #2c333a; }
+
+/* ==========================================================================
+   3. Assignee initials and the breadcrumb, which extra.js adds
+   ========================================================================== */
+.assignee-initials {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 22px;
+  block-size: 22px;
+  margin-inline-end: 6px;
+  border-radius: var(--theme-radius-round);
+  background: var(--theme-initials-tone-0);
+  color: var(--theme-initials-ink);
+  font-size: 10px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.assignee-initials.tone-1 { background: var(--theme-initials-tone-1); }
+.assignee-initials.tone-2 { background: var(--theme-initials-tone-2); }
+.assignee-initials.tone-3 { background: var(--theme-initials-tone-3); }
+.assignee-initials.tone-4 { background: var(--theme-initials-tone-4); }
+.assignee-initials.tone-5 { background: var(--theme-initials-tone-5); }
+/* In a list the initials replace the name, which stays in the page for screen readers. */
+table.list td.assigned_to a.assignee-name { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+table.list td.assigned_to { white-space: nowrap; }
+
+nav.page-breadcrumb { margin-block: 0 4px; color: var(--theme-ink-muted); font-size: 13px; }
+nav.page-breadcrumb a, nav.page-breadcrumb a:link, nav.page-breadcrumb a:visited { color: var(--theme-ink-muted); }
+nav.page-breadcrumb a:hover { color: var(--theme-link-hover); }
+nav.page-breadcrumb span { margin-inline: 6px; }
