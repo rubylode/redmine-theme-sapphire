@@ -2,6 +2,52 @@
 
 All notable changes to this theme. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.0.0] - 2026-11-02
+
+### Changed
+
+- The theme is built on the shared Rubylode theme base. The stylesheets, `javascripts/theme.js`, `test/`, `bin/demo` and `docker-compose.yml` are generated from it, and a drift check compares them with the base.
+- `application.css` is now a small file that loads Redmine's own stylesheet, then `tokens.css`. `responsive.css` loads `structure.css`, `plugins.css`, `dark.css` and `flourishes.css`.
+- The dark set moved from the end of `application.css` to `dark.css`. To keep the theme light-only, remove its import from `responsive.css`.
+- Colours, corners, fonts and sizes are `--theme-*` tokens, with the same names in every Rubylode theme. Custom overrides that used the old names need the new ones (see the table below).
+- The sidebar layout from 1100px up, the status lozenge, the priority arrow and the tracker square moved to `flourishes.css`.
+- The status lozenge takes its colours from the status tokens instead of fixed pastel pairs, so New is grey, In Progress blue, Resolved and Closed green, Feedback yellow and Rejected red, as before, with slightly different tints.
+- Tables, panels, the issue card, the filters and the sidebar on the right have a thin border and no shadow, where before only some had a border.
+- The sign-in card, flash messages, tabs, pagination and the text editor follow the base, so they differ in small ways from 1.0.0.
+- The page check covers 29 pages instead of 19, and the demo mounts every Rubylode plugin it finds.
+- The workflows and `docs/ci.md` match the other Rubylode themes: manual runs only on `main`, and a release job that runs after the check job.
+
+### Added
+
+- Styles for the pages 1.0.0 did not cover: the roadmap, subtasks and child issues, the Gantt chart, the calendar, spent time, project settings, administration and the wiki editor.
+- The Rubylode plugins' blocks take the theme's colours: Projects, Home, To-do, Uptime Kuma, GlitchTip, Windmill, Beszel, Stats and the New issue button.
+- A status dot beside the group name in an issue list grouped by status.
+- The overdue date in a list takes the danger ink, which reaches AA in dark mode where Redmine's own red does not.
+- `docs/accessibility.md` with the measured contrast ratios in light and dark.
+- Screenshots and walkthroughs from the new demo data, with the plugin pages in them.
+- Tested on Redmine 7.0.2 and the 7.0 line: 116 of 116 gated page runs in light, dark and phone width, with no console errors, no failed requests, no sideways scrolling and text at AA contrast.
+
+### Removed
+
+- The initials beside the assignee and the breadcrumb above the page title. They came from the old script, which the shared one replaces.
+- The to-do and wiki screenshots; the walkthrough still shows both pages.
+
+### Token names
+
+| 1.0.0 | 2.0.0 |
+|---|---|
+| `--sapphire-blue-0` to `--sapphire-blue-8` | `--theme-accent-0` to `--theme-accent-8` |
+| `--sapphire-page` | `--theme-page` |
+| `--sapphire-sidebar` | `--theme-surface-sunken` |
+| `--sapphire-sidebar-line` | `--theme-line` |
+| `--sapphire-sidebar-width` | `--sapphire-sidebar-width`, unchanged |
+| `--sapphire-topbar` | `--theme-header-background` |
+| `--sapphire-radius` | `--theme-radius-small` |
+| `--sapphire-shadow` | `--theme-shadow-popup` |
+| `--sapphire-phone-menu`, `--sapphire-phone-menu-ink` | no token; the colours are in `flourishes.css` |
+| `--oc-gray-0` to `--oc-gray-9` | `--theme-neutral-0` to `--theme-neutral-9` |
+| `--oc-white` | `--theme-redmine-white` |
+
 ## [1.0.0] - 2026-10-26
 
 ### Added
