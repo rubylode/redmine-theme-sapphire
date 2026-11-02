@@ -2,13 +2,30 @@
 
 All notable changes to this theme. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [2.0.1] - 2026-11-02
+## [2.1.0] - 2026-11-02
+
+### Changed
+
+- The base text size is 16px, up from 14px. It is the token `--theme-font-size`.
+- List text is 14px, up from 11.4px. The sidebar is 14px, up from 12.3px. Fields and buttons are 15px, up from 13.3px.
+- Labels, chips, headings, the header and the action buttons grew in the same proportion.
+- `--theme-font` starts with Noto Sans and `--theme-font-monospace` with Noto Sans Mono, before the system fonts.
+- Chips in the issue list, the action buttons and the label column of the issue page grow with the text.
+- In a tight issue list, a date and its time stack on two lines, and cells have 8px of padding at each side in the sidebar layout.
+- The project switcher in the top bar is 184px wide, up from 160px.
+- The status lozenge is 1.82 times its text tall, so it grows with the text.
+
+### Added
+
+- The theme ships Noto Sans for text and Noto Sans Mono for code, as woff2 files in `sapphire/fonts/`, so nothing is loaded from another site.
+- The font files are under the SIL Open Font License 1.1, and the licence texts are in `sapphire/fonts/`.
 
 ### Fixed
 
+- The corners of the status lozenge sit inside it; they stood 1px out at the top and bottom.
 - On pages with no project menu, such as My page and the welcome page, the sidebar now holds the global links (Home, My page, Projects, Administration for an administrator, Help). They leave the top bar there, so they show once.
 - Redmine's right-hand sidebar is 200px wide in the sidebar layout, down from 260px.
-- The subject column of the issue list wraps down to 10em in the sidebar layout, which leaves more room for the other columns.
+- The subject column of the issue list wraps down to 9em in the sidebar layout, which leaves more room for the other columns.
 - A list that is still too wide scrolls sideways inside its wrapper, and its right edge fades while there is more to scroll to.
 
 ## [2.0.0] - 2026-11-02
