@@ -190,13 +190,13 @@ body .stats-tile[data-direction=shrinking] :is(.stats-tile-value, .stats-tile-de
     background: var(--theme-primary-background);
     background-color: var(--theme-primary);
     color: var(--theme-ink-on-primary);
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1;
     white-space: nowrap;
     box-shadow: var(--theme-shadow-primary-button);
   }
-  body #header a.rubylode-new-issue-button::before { content: "+"; font-size: 18px; font-weight: 400; line-height: 1; }
+  body #header a.rubylode-new-issue-button::before { content: "+"; font-size: 1.286rem; font-weight: 400; line-height: 1; }
   body #header a.rubylode-new-issue-button:hover {
     border-color: var(--theme-primary-hover);
     background: var(--theme-primary-background-hover);
@@ -208,5 +208,5 @@ body .stats-tile[data-direction=shrinking] :is(.stats-tile-value, .stats-tile-de
   body:has(#header a.rubylode-new-issue-button) nav#top-menu.top-menu { --theme-search-width: 530px; }
 }
 @media screen and (min-width: 900px) and (max-width: 1179px) {
-  body:has(#header a.rubylode-new-issue-button) nav#top-menu.top-menu { --theme-search-width: 400px; }
+  body:has(#header a.rubylode-new-issue-button) nav#top-menu.top-menu { --theme-search-width: 416px; }
 }

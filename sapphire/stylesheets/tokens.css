@@ -143,9 +143,11 @@
   --theme-top-bar-height: 48px;
   --theme-project-bar-height: 48px;
 
-  /* Type: the system's own fonts. No font files are shipped. */
-  --theme-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --theme-font-monospace: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  /* Type: the bundled Noto Sans and Noto Sans Mono (in fonts/, SIL Open Font License 1.1), the system's own fonts after them.
+     --theme-font-size is the size of running text; every other text size follows it. */
+  --theme-font-size: 16px;
+  --theme-font: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --theme-font-monospace: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --theme-title-font: var(--theme-font);
   --theme-title-weight: 500;
   --theme-code-background: #f1f2f4;

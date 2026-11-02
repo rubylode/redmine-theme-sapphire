@@ -11,13 +11,20 @@
 /* ==========================================================================
    1. Page and type
    ========================================================================== */
+/* The type scale: the root is --theme-font-size (16px when a theme leaves it out), running text is 1rem, and every other text
+   size in the base is a rem value, so a theme changes all of them with the one token. */
+html { font-size: var(--theme-font-size, 16px); }
 html, body {
   background: var(--theme-page);
   color: var(--theme-ink);
   font-family: var(--theme-font);
-  font-size: 14px;
   line-height: 1.5;
 }
+body { font-size: 1rem; }
+/* Redmine sizes lists at 0.8125rem; the base sets them a step larger, the size of the sidebar. */
+table.list, .table-list { font-size: 0.875rem; }
+/* Fields and buttons take the browser's own 13.33px unless told otherwise. */
+input, select, textarea, button { font-size: 0.9375rem; }
 #wrapper, #main { background: var(--theme-page); }
 #content, #sidebar { background: transparent; color: var(--theme-ink); }
 #content { padding: var(--theme-space) var(--theme-space-large) 22px; }
@@ -38,7 +45,7 @@ pre { font-size: 0.875rem; line-height: 1.55; }
 .wiki h1 { font-size: 1.4rem; }
 .wiki h2 { font-size: 1.15rem; border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-line); padding-block-end: 4px; }
 .wiki h3 { font-size: 1.02rem; }
-.wiki code { padding: 1px 5px; border: var(--theme-border-width) var(--theme-border-style) var(--theme-line); border-radius: var(--theme-radius-inline); background: var(--theme-surface-sunken); font-size: 13px; }
+.wiki code { padding: 1px 5px; border: var(--theme-border-width) var(--theme-border-style) var(--theme-line); border-radius: var(--theme-radius-inline); background: var(--theme-surface-sunken); font-size: 0.929rem; }
 .wiki pre code, .wiki pre code.syntaxhl { padding: 0; border: 0; background: none; font-size: inherit; }
 pre, div.wiki pre, div.pre-wrapper pre, code.syntaxhl, div.wiki code.syntaxhl, div.pre-wrapper code {
   background-color: var(--theme-code-background);
@@ -94,7 +101,7 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
     justify-content: flex-start;
     background: var(--theme-header-background);
     border-block-end: 1px solid var(--theme-header-line);
-    font-size: 14px;
+    font-size: 1rem;
   }
   /* The mark opens the bar: the image in --theme-mark-image. */
   nav#top-menu.top-menu::before {
@@ -143,7 +150,7 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
     font-weight: var(--theme-title-weight);
     letter-spacing: -0.01em;
   }
-  #header h1 .breadcrumbs { margin: 0; font-size: 11px; font-weight: 500; letter-spacing: 0.02em; }
+  #header h1 .breadcrumbs { margin: 0; font-size: 0.786rem; font-weight: 500; letter-spacing: 0.02em; }
   #main-menu {
     position: relative;
     inset: auto;
@@ -165,7 +172,7 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
     padding: 0 11px;
     border-radius: 0;
     border-block-end: 2px solid transparent;
-    font-size: 14px;
+    font-size: 1rem;
   }
   #main-menu li a.selected, #main-menu li a.selected:hover {
     border-image: var(--theme-selected-tab-border-image);
@@ -183,13 +190,13 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
     border-radius: var(--theme-radius-pill);
     background: var(--theme-surface);
     color: var(--theme-ink-soft);
-    font-size: 18px;
+    font-size: 1.286rem;
     font-weight: 400;
     line-height: 1;
   }
   #main-menu li a.new-object:hover { background: var(--theme-surface-hover); border-color: var(--theme-accent-3); color: var(--theme-accent-8); }
   #main-menu li:has(> a.new-object) .menu-children { inset-inline: 0 auto; inset-block-start: 100%; inline-size: 210px; margin-block-start: 6px; }
-  #main-menu .menu-children li a { block-size: auto; padding: 9px 16px; font-size: 14px; border: 0; }
+  #main-menu .menu-children li a { block-size: auto; padding: 9px 16px; font-size: 1rem; border: 0; }
 
   /* Row 1, right: the New issue button, the search and the project switcher, as pills (lifted out of row 2) */
   #header #quick-search {
@@ -220,7 +227,7 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
       var(--theme-search-field-image)
       no-repeat 11px 50%;
     color: var(--theme-ink);
-    font-size: 14px;
+    font-size: 0.9375rem;
   }
   #header #quick-search input[type=text]::placeholder { color: var(--theme-ink-muted); }
   #header #quick-search input[type=text]:focus { background-color: var(--theme-surface); }
@@ -235,7 +242,7 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
       var(--theme-project-jump-arrow-image)
       no-repeat right 8px center;
     color: var(--theme-ink);
-    font-size: 14px;
+    font-size: 0.9375rem;
     line-height: 30px;
   }
   #header #project-jump.expanded .drdn-trigger { background-image: none; }
@@ -243,9 +250,9 @@ nav.top-menu { background: var(--theme-header-background-solid); color: var(--th
 }
 /* Below 1180px the bar gets tight: narrower fields, and Help leaves the bar (it stays in the phone menu and on wider windows). */
 @media screen and (min-width: 900px) and (max-width: 1179px) {
-  nav#top-menu.top-menu { --theme-search-width: 270px; }
-  #header #quick-search input[type=text] { inline-size: 130px; }
-  #header #quick-search #project-jump.drdn { inline-size: 130px; }
+  nav#top-menu.top-menu { --theme-search-width: 286px; }
+  #header #quick-search input[type=text] { inline-size: 100px; }
+  #header #quick-search #project-jump.drdn { inline-size: 176px; }
   .top-menu__links a.help { display: none; }
   .top-menu__links a, .top-menu__links a:link, .top-menu__links a:visited { padding-inline: 7px; }
 }
@@ -297,12 +304,12 @@ body .flyout-menu .flyout-menu__avatar { background: var(--theme-surface-sunken)
     box-shadow: var(--theme-shadow-card);
   }
   #sidebar #sidebar-wrapper:not(:has(*)) { display: none; }
-  #sidebar { inline-size: 232px; }
+  #sidebar { inline-size: 216px; }
 }
 #sidebar #watchers { margin-block-start: 14px; padding: 12px 0 0; border-block-start: var(--theme-border-width) var(--theme-border-style) var(--theme-line); }
 #sidebar #watchers h3 { margin: 0 0 8px; }
 #sidebar #watchers ul { margin: 0; padding: 0; list-style: none; }
-#sidebar #watchers li { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-size: 14px; }
+#sidebar #watchers li { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-size: inherit; }
 #sidebar #watchers li a { display: inline; margin-inline-start: 0; padding: 0; }
 #sidebar #watchers li a:hover { background: none; }
 #sidebar #watchers li a.delete { margin-inline-start: auto; opacity: 0.55; }
@@ -427,6 +434,9 @@ table.list.issues > tbody > tr.issue.status-4 { --chip: var(--theme-status-feedb
 table.list.issues > tbody > tr.issue.status-5 { --chip: var(--theme-status-closed); }
 table.list.issues > tbody > tr.issue.status-6 { --chip: var(--theme-status-rejected); }
 table.list.issues td { white-space: nowrap; }
+/* Where the list is tight, a date and time stack on two lines instead of pushing the last columns out of view */
+table.list.issues td:is(.created_on, .updated_on, .closed_on) { white-space: normal; }
+table.list.issues > thead > tr > th, table.list.issues > tbody > tr > td { padding-inline: 10px; }
 table.list.issues td.subject, table.list.issues td.description, table.list.issues td.last_notes { white-space: normal; }
 table.list.issues td.subject { min-inline-size: 18em; overflow-wrap: anywhere; font-weight: 400; }
 table.list.issues th, table.list.issues td { text-align: start; }
@@ -435,7 +445,7 @@ table.list.issues > tbody > tr.issue > td.status,
 table.list.issues > tbody > tr.issue > td.priority {
   inline-size: 1%;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 0.875rem;
   font-weight: 650;
   font-style: normal;
   text-transform: none;
@@ -447,7 +457,8 @@ table.list.issues > tbody > tr.issue > td.priority {
     linear-gradient(var(--pill-color), var(--pill-color)),
     none;
   background-position: left center, right center, 10px center, 0 0;
-  background-size: 10px 22px, 10px 22px, calc(100% - 20px) 22px, auto;
+  /* the chip is 1.7 times the text tall, so it grows with the type */
+  background-size: 10px 1.7em, 10px 1.7em, calc(100% - 20px) 1.7em, auto;
   background-repeat: no-repeat;
   background-origin: content-box;
   /* the last layer is empty, so the row colour (stripe, hover) fills the whole cell, not only the chip */
@@ -549,7 +560,7 @@ table.list tr.overdue:not(.context-menu-selection) td.due_date { color: var(--th
 #query_form fieldset legend, #query_form_with_buttons fieldset legend {
   padding: 0 6px;
   color: var(--theme-ink-muted);
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -583,7 +594,7 @@ p.other-formats, p.other-formats a { color: var(--theme-ink-muted); }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 0.857rem;
   color: var(--st-ink);
   background: var(--st-fill);
   border-color: color-mix(in srgb, var(--st) 35%, transparent);
@@ -604,7 +615,7 @@ div.issue.details { padding: 20px 24px; box-shadow: var(--theme-shadow-card); bo
 div.issue div.subject { display: flow-root; margin-inline-start: 8px; }
 div.issue div.subject div div { padding-inline-start: 0; }
 div.issue div.subject p { color: var(--theme-ink-muted); font-size: 0.8125rem; }
-div.issue div.subject h3 { max-inline-size: 85ch; margin-block-start: 2px; color: var(--theme-ink); font-size: 22px; font-weight: 750; line-height: 1.25; }
+div.issue div.subject h3 { max-inline-size: 85ch; margin-block-start: 2px; color: var(--theme-ink); font-size: 1.571rem; font-weight: 750; line-height: 1.25; }
 div.issue p.author { color: var(--theme-ink-muted); font-size: 0.8125rem; }
 div.issue p.author a { color: var(--theme-link); }
 div.issue hr, div.issue.details > hr { border: 0; border-block-start: var(--theme-border-width) var(--theme-border-style) var(--theme-line); background: none; block-size: 0; margin: 14px 0; }
@@ -617,15 +628,15 @@ div.issue div.subject p:has(> a.issue) {
   border: var(--theme-border-width) var(--theme-border-style) var(--theme-line);
   border-radius: var(--theme-radius-small);
   color: var(--theme-ink);
-  font-size: 14px;
+  font-size: 1rem;
 }
 div.issue div.subject p:has(> a.issue)::before {
   display: inline-block;
-  min-inline-size: 76px;
+  min-inline-size: 6.9em;
   margin-inline-end: 10px;
   content: "Ancestor";
   color: var(--theme-ink-muted);
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -635,10 +646,10 @@ div.issue div.subject p:has(+ div > h3):has(> a.issue)::before { content: "Paren
 div.issue div.subject p:has(> a.issue) a { font-weight: 700; }
 
 /* Previous / next: one segmented control */
-#content .next-prev-links { display: inline-flex; align-items: center; margin: 0; padding: 0; border: 0; background: none; color: var(--theme-ink-muted); font-size: 13px; }
+#content .next-prev-links { display: inline-flex; align-items: center; margin: 0; padding: 0; border: 0; background: none; color: var(--theme-ink-muted); font-size: 0.929rem; }
 #content .next-prev-links span.pagination { padding: 0; }
 #content .next-prev-links ul.pages { display: inline-flex; margin: 0; padding: 0; }
-#content .next-prev-links ul.pages li { background: var(--theme-surface); border-color: var(--theme-line); font-size: 13px; }
+#content .next-prev-links ul.pages li { background: var(--theme-surface); border-color: var(--theme-line); font-size: 0.929rem; }
 #content .next-prev-links ul.pages li a { display: block; padding: 4px 10px; color: var(--theme-link); }
 #content .next-prev-links ul.pages li:hover { background: var(--theme-surface-hover); }
 #content .next-prev-links ul.pages li span { color: var(--theme-ink-muted); }
@@ -651,9 +662,10 @@ div.issue .attributes {
   border: var(--theme-border-width) var(--theme-border-style) var(--theme-line);
   border-radius: var(--theme-radius);
 }
-div.issue .attributes .attribute { min-block-size: 0; padding-block: calc(5px * var(--theme-density)); padding-inline-start: 140px; }
-div.issue .attributes .attribute .label { inline-size: 130px; margin-inline-start: -140px; color: var(--theme-ink-muted); font-weight: 400; }
-div.issue .attributes .attribute .value { color: var(--theme-ink); overflow-wrap: anywhere; }
+/* The label column is measured in em, so it widens with the type */
+div.issue .attributes .attribute { min-block-size: 0; padding-block: calc(5px * var(--theme-density)); padding-inline-start: 10em; }
+div.issue .attributes .attribute .label { inline-size: 9.3em; margin-inline-start: -10em; color: var(--theme-ink-muted); font-weight: 400; }
+div.issue .attributes .attribute .value { color: var(--theme-ink); font-size: 1rem; overflow-wrap: anywhere; }
 div.issue .attributes .attribute .value:empty::before { content: "—"; color: var(--theme-ink-muted); }
 div.issue .attributes .splitcontent + .splitcontent { margin-block-start: 6px; padding-block-start: 8px; border-block-start: 1px dashed var(--theme-line); }
 div.issue .attributes table.progress { vertical-align: middle; }
@@ -695,7 +707,7 @@ div.issue.overdue .due-date .value { color: var(--theme-danger-ink); font-weight
 /* Section headings in the card (Description, Subtasks, Related issues), long text kept readable */
 div.issue .description > p > strong, div.issue #issue_tree > p > strong, div.issue #relations > p > strong {
   color: var(--theme-ink-muted);
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -710,7 +722,7 @@ div.issue .issues-stat {
   align-items: center;
   gap: 6px;
   color: var(--theme-ink-muted);
-  font-size: 13px;
+  font-size: 0.929rem;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
@@ -737,12 +749,12 @@ div.issue .issues-stat a { color: var(--theme-link); font-variant-numeric: tabul
   background: var(--theme-surface-sunken);
   border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-line);
   color: var(--theme-ink-muted);
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 400;
 }
 .journals h4.journal-header .gravatar, .journals h4.journal-header .avatar { flex: none; margin: 0; border-radius: var(--theme-radius-round); }
 .journals h4.journal-header .user { color: var(--theme-link); font-weight: 700; }
-.journals h4.journal-header .journal-link { order: 2; margin-inline-start: auto; color: var(--theme-ink-muted); font-size: 13px; }
+.journals h4.journal-header .journal-link { order: 2; margin-inline-start: auto; color: var(--theme-ink-muted); font-size: 0.929rem; }
 .journals h4.journal-header .journal-actions { order: 3; gap: 2px; }
 .journals .journal-actions > a, .journals .journal-actions .drdn-trigger {
   display: inline-flex;
@@ -757,7 +769,7 @@ div.issue .issues-stat a { color: var(--theme-link); font-variant-numeric: tabul
 .journals .journal-actions .icon-svg { stroke: currentColor; }
 .journals .journal-content { margin-block-end: 0; padding: 12px 16px 14px; }
 .journals .journal .journal-content .wiki { margin-inline-start: 0; }
-.journals ul.details, .journals .journal-details { margin: 0 0 8px; padding: 0; list-style: none; color: var(--theme-ink-muted); font-size: 14px; }
+.journals ul.details, .journals .journal-details { margin: 0 0 8px; padding: 0; list-style: none; color: var(--theme-ink-muted); font-size: 1rem; }
 .journals ul.details strong, .journals .journal-details strong { color: var(--theme-ink); font-weight: 650; }
 .journals ul.details a { color: var(--theme-link); }
 .journal.private-notes, div.journal.private-notes { border-inline-start: 3px solid var(--theme-danger-soft-border); }
@@ -778,7 +790,7 @@ input[type=submit], input[type=button], input[type=reset], button:not(.tab-left)
   background: var(--theme-button-background);
   color: var(--theme-button-ink);
 }
-input[type=submit], input[type=button], input[type=reset] { block-size: 34px; padding: 0 16px; line-height: 1; }
+input[type=submit], input[type=button], input[type=reset] { block-size: 2.3em; padding: 0 16px; line-height: 1; }
 input[type=submit]:hover, input[type=button]:hover, input[type=reset]:hover,
 button:not(.tab-left):not(.tab-right):not(.icon-only):not(.ui-button):not(.ui-dialog-titlebar-close):not(.jstElements button):hover, a.button:hover {
   border-color: var(--theme-primary);
@@ -811,7 +823,7 @@ div.issue .contextual > a, #sidebar .contextual > a, #content a.button,
   align-items: center;
   gap: 6px;
   box-sizing: border-box;
-  block-size: 30px;
+  block-size: 2.3em;
   padding: 0 12px;
   background: var(--theme-button-background);
   border: 1px solid var(--theme-button-border);
@@ -822,8 +834,8 @@ div.issue .contextual > a, #sidebar .contextual > a, #content a.button,
   text-decoration: none;
   cursor: pointer;
 }
-div.issue .contextual > a, #sidebar .contextual > a { block-size: 24px; padding: 0 9px; font-size: 0.75rem; }
-#content > .contextual > .drdn > .drdn-trigger { inline-size: 30px; padding: 0; justify-content: center; }
+div.issue .contextual > a, #sidebar .contextual > a { block-size: 2.1em; padding: 0 9px; font-size: 0.75rem; }
+#content > .contextual > .drdn > .drdn-trigger { inline-size: 2.3em; padding: 0; justify-content: center; }
 #content > .contextual > a:hover, #content > .contextual > .drdn > .drdn-trigger:hover,
 div.issue .contextual > a:hover, #sidebar .contextual > a:hover, #content a.button:hover,
 #query_form p.buttons a:hover, #query_form_with_buttons p.buttons a:hover, p.buttons > a.icon:hover {
@@ -992,7 +1004,7 @@ div.tabs-buttons button { color: var(--theme-ink-muted); background: var(--theme
 
 /* Tags of tag plugins that paint each tag with an inline background: one calm chip instead (the inline style needs !important) */
 .tag-label-color { display: inline-block; padding: 1px 10px; background-color: var(--theme-button-background) !important; border: 1px solid var(--theme-button-border); border-radius: var(--theme-radius-pill); line-height: 1.5; }
-.tag-label-color a, .tag-label-color a:visited, .tag-label-color a:hover { color: var(--theme-button-ink); font-size: 13px; font-weight: 700; text-decoration: none; }
+.tag-label-color a, .tag-label-color a:visited, .tag-label-color a:hover { color: var(--theme-button-ink); font-size: 0.929rem; font-weight: 700; text-decoration: none; }
 
 /* Avatars: Redmine's red, orange and pink do not reach 4.5 to 1 with white text, so those are darker */
 .avatar-color-0 { background-color: var(--theme-avatar-color-0); }
@@ -1017,7 +1029,7 @@ div#activity h3 {
   border: var(--theme-border-width) var(--theme-border-style) var(--theme-line);
   border-radius: var(--theme-radius-panel) var(--theme-radius-panel) 0 0;
   color: var(--theme-ink-muted);
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1043,7 +1055,7 @@ div#activity dt {
   font-weight: 400;
 }
 div#activity dt:first-of-type { border-block-start: 0; }
-div#activity dt .time { order: -1; flex: 0 0 64px; margin-inline-end: 0; color: var(--theme-ink-muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+div#activity dt .time { order: -1; flex: 0 0 4.6em; margin-inline-end: 0; color: var(--theme-ink-muted); font-size: 1rem; font-variant-numeric: tabular-nums; }
 div#activity dt .avatar, div#activity dt .gravatar { display: none; }
 /* Redmine 7 puts an icon in front of each event; the round marker below replaces it */
 div#activity dt > svg.icon-svg, div#activity dt > .icon-svg { display: none; }
@@ -1058,7 +1070,7 @@ div#activity dt::before {
   border-radius: var(--theme-radius-round);
   background: var(--theme-line-soft);
   color: var(--theme-ink-muted);
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700;
 }
 div#activity dt.issue-closed::before { content: "✓"; background: var(--theme-success-soft); color: var(--theme-success-ink); }
@@ -1067,12 +1079,12 @@ div#activity dt:is(.issue-edit, .issue-note)::before { content: "✎"; backgroun
 div#activity dt:is(.wiki-page, .wiki-page-edit)::before { content: "¶"; background: var(--theme-tertiary-pale); color: var(--theme-activity-wiki-ink); }
 div#activity dt.changeset::before { content: "‹›"; }
 div#activity dt.time-entry::before { content: "◷"; }
-div#activity dt .project { padding: 0 8px; border-radius: var(--theme-radius-small); background: var(--theme-line-soft); color: var(--theme-ink); font-size: 12px; font-weight: 700; }
+div#activity dt .project { padding: 0 8px; border-radius: var(--theme-radius-small); background: var(--theme-line-soft); color: var(--theme-ink); font-size: 0.857rem; font-weight: 700; }
 div#activity span.project::after { content: none; }
 div#activity dt a { font-weight: 700; }
-div#activity dd { margin: 0; padding: 4px 22px 14px 140px; border: 0; font-size: 14px; }
+div#activity dd { margin: 0; padding: 4px 22px 14px calc(4.6rem + 76px); border: 0; font-size: 1rem; }
 div#activity dd .description { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; color: var(--theme-ink); font-style: normal; }
-div#activity dd .author { display: block; margin-block-start: 4px; color: var(--theme-ink-muted); font-size: 13px; }
+div#activity dd .author { display: block; margin-block-start: 4px; color: var(--theme-ink-muted); font-size: 0.929rem; }
 div#activity dd .author a { color: var(--theme-ink-muted); }
 @media screen and (max-width: 899px) {
   div#activity dt { flex-wrap: wrap; padding-inline: 14px; }
@@ -1091,17 +1103,17 @@ div#activity dd .author a { color: var(--theme-ink-muted); }
   border-radius: var(--theme-radius-panel);
 }
 #roadmap article.version-article > header { display: flex; align-items: baseline; gap: 12px; margin: 0 0 12px; }
-#roadmap article.version-article > header h3 { margin: 0; padding: 0; background-image: none; font-size: 20px; font-weight: 750; }
+#roadmap article.version-article > header h3 { margin: 0; padding: 0; background-image: none; font-size: 1.429rem; font-weight: 750; }
 .version-overview table.progress { float: none; display: table; inline-size: 100%; block-size: 10px; margin: 0 0 8px; font-size: 0; line-height: 0; }
 .version-overview table.progress td { block-size: 10px; padding: 0; }
-.version-overview p.progress-info { margin: 0 0 12px; color: var(--theme-ink-muted); font-size: 14px; }
+.version-overview p.progress-info { margin: 0 0 12px; color: var(--theme-ink-muted); font-size: 1rem; }
 .version-overview p.progress-info a { color: var(--theme-link); }
 #roadmap table.related-issues, table.related-issues { inline-size: 100%; border: 0; border-block-start: var(--theme-border-width) var(--theme-border-style) var(--theme-line); border-radius: 0; box-shadow: none; }
 table.related-issues caption {
   padding: 10px 0 8px;
   text-align: start;
   color: var(--theme-ink-muted);
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1118,7 +1130,7 @@ span.badge-status-locked, .version.locked { color: var(--theme-ink-muted); }
   padding: 18px 20px;
   box-shadow: var(--theme-shadow-card);
 }
-.controller-projects.action-show div.box h3 { margin: 0 0 12px; padding: 0; background: none; font-size: 16px; font-weight: 750; }
+.controller-projects.action-show div.box h3 { margin: 0 0 12px; padding: 0; background: none; font-size: 1.143rem; font-weight: 750; }
 .controller-projects.action-show div.box ul { margin: 0; padding: 0; list-style: none; }
 .controller-projects.action-show div.issues.box li { padding: 6px 0; border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-line); }
 .controller-projects.action-show div.issues.box li:last-child { border-block-end: 0; }
@@ -1126,7 +1138,7 @@ span.badge-status-locked, .version.locked { color: var(--theme-ink-muted); }
   display: inline-block;
   min-inline-size: 90px;
   color: var(--theme-ink-muted);
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1164,13 +1176,13 @@ span.badge-status-locked, .version.locked { color: var(--theme-ink-muted); }
   border-radius: var(--theme-radius-panel);
   box-shadow: var(--theme-shadow-card);
 }
-#projects-index li.root > div.root a.project.root { color: var(--theme-accent-8); font-size: 18px; font-weight: 750; letter-spacing: -0.01em; }
-#projects-index div.wiki.description { margin: 8px 0 0; color: var(--theme-ink); font-size: 14px; line-height: 1.55; }
+#projects-index li.root > div.root a.project.root { color: var(--theme-accent-8); font-size: 1.286rem; font-weight: 750; letter-spacing: -0.01em; }
+#projects-index div.wiki.description { margin: 8px 0 0; color: var(--theme-ink); font-size: 1rem; line-height: 1.55; }
 #projects-index li.root > ul.projects { margin: 16px 0 0; padding: 0; border: 0; border-block-start: var(--theme-border-width) var(--theme-border-style) var(--theme-line); list-style: none; }
 #projects-index li.root > ul.projects > li { margin: 0; padding: 12px 0; border-block-end: 1px solid var(--theme-line-soft); }
 #projects-index li.root > ul.projects > li:last-child { padding-block-end: 0; border-block-end: 0; }
-#projects-index li.root > ul.projects a.project { font-size: 15px; font-weight: 700; }
-#projects-index li.root > ul.projects div.wiki.description { margin-block-start: 4px; color: var(--theme-ink-muted); font-size: 13px; }
+#projects-index li.root > ul.projects a.project { font-size: 1.071rem; font-weight: 700; }
+#projects-index li.root > ul.projects div.wiki.description { margin-block-start: 4px; color: var(--theme-ink-muted); font-size: 0.929rem; }
 #projects-index ul.projects li.child, #projects-index ul.projects ul { background: none; border-inline-start: 0; }
 #projects-index a.icon-fav, span.icon-user { color: var(--theme-link); }
 
@@ -1183,7 +1195,7 @@ span.badge-status-locked, .version.locked { color: var(--theme-ink-muted); }
   box-shadow: var(--theme-shadow-card);
   overflow: hidden;
 }
-#my-page .mypage-box > h3, .mypage-box > h3 { margin: 0; padding: 12px 16px; border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-line); font-size: 15px; font-weight: 700; }
+#my-page .mypage-box > h3, .mypage-box > h3 { margin: 0; padding: 12px 16px; border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-line); font-size: 1.071rem; font-weight: 700; }
 #my-page .mypage-box .autoscroll { padding: 0; }
 #my-page .mypage-box table.list { border: 0; border-radius: 0; box-shadow: none; }
 #my-page .mypage-box p.nodata, #my-page .mypage-box > p { margin: 12px 16px; }
@@ -1225,7 +1237,7 @@ p.news-summary, .news p.summary, div.news .author, .news-article p.author, p.aut
 }
 #login-form label { color: var(--theme-ink-soft); }
 #login-form a.lost_password, #login-form a { color: var(--theme-link); }
-#login-form input#login-submit { block-size: 38px; font-size: 15px; }
+#login-form input#login-submit { block-size: 38px; font-size: 1.071rem; }
 .controller-account #content > h2, .controller-account div#login-form h3 { text-align: center; }
 
 /* ==========================================================================

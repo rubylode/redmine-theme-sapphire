@@ -59,7 +59,7 @@
     border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-header-line);
   }
   body:not(.controller-account) #header #quick-search input[type=text] { inline-size: 200px; padding-inline-start: 32px; }
-  body:not(.controller-account) #header #quick-search #project-jump.drdn { inline-size: 160px; }
+  body:not(.controller-account) #header #quick-search #project-jump.drdn { inline-size: 184px; }
   body:not(.controller-account) nav#top-menu .profile-menu {
     grid-area: profile;
     display: flex;
@@ -140,7 +140,7 @@
     border-radius: var(--theme-radius-small);
     background: var(--theme-primary-background);
     color: var(--theme-ink-on-primary);
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.5;
     text-align: center;
@@ -214,7 +214,8 @@
      may wrap down to 10em, which leaves the other columns more room between the two sidebars. Where the list still does
      not fit, the list scrolls sideways inside its wrapper, and the right edge fades while there is more to scroll to. */
   body:not(.controller-account):not(:has(#admin-menu)) #main:not(.nosidebar) #sidebar { inline-size: 172px; }
-  body:not(.controller-account) table.list.issues td.subject { min-inline-size: 10em; }
+  body:not(.controller-account) table.list.issues td.subject { min-inline-size: 9em; }
+  body:not(.controller-account) table.list.issues > thead > tr > th, body:not(.controller-account) table.list.issues > tbody > tr > td { padding-inline: 8px; }
   @supports (animation-timeline: scroll()) {
     body:not(.controller-account) #content .autoscroll {
       animation: sidebar-layout-scroll-edge linear both;

@@ -18,8 +18,8 @@
 /* Redmine loads a theme's application.css in place of its own, and its responsive.css in place of Redmine's phone rules.
  * Rubylode Sapphire keeps both of Redmine's files and adds its own after them:
  *
- *   application.css    Redmine's stylesheet, then tokens.css (every colour, corner, font and size, and Redmine's own
- *                      palette pointed at them)
+ *   application.css    Redmine's stylesheet, then fonts.css (the bundled Noto Sans and Noto Sans Mono, from ../fonts), then
+ *                      tokens.css (every colour, corner, font and size, and Redmine's own palette pointed at them)
  *   responsive.css     Redmine's phone rules, then
  *                        structure.css     the page blocks: header, lists, the issue page, forms, everything else
  *                        plugins.css       the Rubylode plugins' custom properties pointed at the tokens
@@ -34,4 +34,5 @@
  * is overwritten by the next build. */
 
 @import url(/application.css);
+@import url(fonts.css);
 @import url(tokens.css);

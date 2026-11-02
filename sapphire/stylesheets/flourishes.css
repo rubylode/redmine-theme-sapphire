@@ -13,12 +13,12 @@
    1. The issue list: a square-cornered lozenge for the status, an arrow for the priority, a square for the tracker
    ========================================================================== */
 table.list.issues > tbody > tr.issue {
-  --lozenge-height: 20px;
+  --lozenge-height: 1.82em; /* grows with the type */
   --lozenge-corner: 3px;
 }
 table.list.issues > tbody > tr.issue > td.status {
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 0.786rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   /* The lozenge is seven pieces that do not overlap (the fill is translucent): the middle, a strip at each side, four corners. */
@@ -35,10 +35,10 @@ table.list.issues > tbody > tr.issue > td.status {
     center,
     left center,
     right center,
-    left calc(50% - 9.5px),
-    right calc(50% - 9.5px),
-    left calc(50% + 9.5px),
-    right calc(50% + 9.5px),
+    left calc(50% - var(--lozenge-height) / 2 + var(--lozenge-corner) / 2),
+    right calc(50% - var(--lozenge-height) / 2 + var(--lozenge-corner) / 2),
+    left calc(50% + var(--lozenge-height) / 2 - var(--lozenge-corner) / 2),
+    right calc(50% + var(--lozenge-height) / 2 - var(--lozenge-corner) / 2),
     0 0;
   background-size:
     calc(100% - 2 * var(--lozenge-corner)) var(--lozenge-height),
@@ -118,7 +118,7 @@ body .flyout-menu .flyout-menu__avatar { background: #2c333a; }
   border-radius: var(--theme-radius-round);
   background: var(--theme-initials-tone-0);
   color: var(--theme-initials-ink);
-  font-size: 10px;
+  font-size: 0.714rem;
   font-weight: 700;
   vertical-align: middle;
 }
@@ -131,7 +131,7 @@ body .flyout-menu .flyout-menu__avatar { background: #2c333a; }
 table.list td.assigned_to a.assignee-name { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 table.list td.assigned_to { white-space: nowrap; }
 
-nav.page-breadcrumb { margin-block: 0 4px; color: var(--theme-ink-muted); font-size: 13px; }
+nav.page-breadcrumb { margin-block: 0 4px; color: var(--theme-ink-muted); font-size: 0.929rem; }
 nav.page-breadcrumb a, nav.page-breadcrumb a:link, nav.page-breadcrumb a:visited { color: var(--theme-ink-muted); }
 nav.page-breadcrumb a:hover { color: var(--theme-link-hover); }
 nav.page-breadcrumb span { margin-inline: 6px; }
