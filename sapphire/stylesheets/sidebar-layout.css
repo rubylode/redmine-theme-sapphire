@@ -159,6 +159,72 @@
 
   body:not(.controller-account) #main { grid-area: main; }
   body:not(.controller-account) #footer { grid-area: footer; }
+
+  /* Pages with no project menu (My page, the welcome page): the global links leave the top bar and become the sidebar's menu,
+     under the tile and the name. The top bar keeps its place, painted by the menu bar's ::before. Help comes back here, at
+     the widths where the top bar drops it. */
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) nav#top-menu.top-menu::before {
+    content: "";
+    display: block;
+    grid-area: top;
+    inline-size: auto;
+    block-size: auto;
+    min-block-size: var(--theme-top-bar-height);
+    background: var(--theme-header-background);
+    border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-header-line);
+  }
+  body.page-scrolled:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) nav#top-menu.top-menu::before { box-shadow: var(--theme-shadow-header-scrolled); }
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) nav#top-menu .general-menu {
+    grid-area: menu;
+    display: block;
+    min-block-size: 0;
+    margin: 0;
+    padding: 8px 8px 14px;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links ul { flex-direction: column; align-items: stretch; gap: 1px; }
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links li { display: block; margin: 0; padding: 0; }
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a,
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a.help {
+    display: block;
+    padding: 7px 12px;
+    border-radius: var(--theme-radius-small);
+    color: var(--theme-header-link);
+    font-weight: 500;
+  }
+  body:not(.controller-account):not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a:hover {
+    background: var(--theme-sidebar-hover-background);
+    color: var(--theme-ink);
+    text-decoration: none;
+  }
+  body.controller-welcome:not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a.home,
+  body.controller-welcome:not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a.home:hover,
+  body.controller-my.action-page:not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a.my-page,
+  body.controller-my.action-page:not(.has-main-menu):not(:has(#admin-menu)) .general-menu .top-menu__links a.my-page:hover {
+    background: var(--theme-sidebar-selected-background);
+    color: var(--theme-sidebar-selected-ink);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--theme-sidebar-selected-edge);
+  }
+
+  /* Redmine's right-hand sidebar (custom queries, watchers) is 200px wide here instead of 260px, and the issue list's subject
+     may wrap down to 10em, which leaves the other columns more room between the two sidebars. Where the list still does
+     not fit, the list scrolls sideways inside its wrapper, and the right edge fades while there is more to scroll to. */
+  body:not(.controller-account):not(:has(#admin-menu)) #main:not(.nosidebar) #sidebar { inline-size: 172px; }
+  body:not(.controller-account) table.list.issues td.subject { min-inline-size: 10em; }
+  @supports (animation-timeline: scroll()) {
+    body:not(.controller-account) #content .autoscroll {
+      animation: sidebar-layout-scroll-edge linear both;
+      animation-timeline: scroll(self inline);
+    }
+  }
+  @keyframes sidebar-layout-scroll-edge {
+    from, 98% { mask-image: linear-gradient(to left, transparent, #000 48px); }
+    to { mask-image: none; }
+  }
   /* The profile dropdown opens downwards from the top bar, aligned to the right edge. */
   body:not(.controller-account) #account .dropdown-content { inset-inline: auto 0; }
 

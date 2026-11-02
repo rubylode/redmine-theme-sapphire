@@ -2,6 +2,15 @@
 
 All notable changes to this theme. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.0.1] - 2026-11-02
+
+### Fixed
+
+- On pages with no project menu, such as My page and the welcome page, the sidebar now holds the global links (Home, My page, Projects, Administration for an administrator, Help). They leave the top bar there, so they show once.
+- Redmine's right-hand sidebar is 200px wide in the sidebar layout, down from 260px.
+- The subject column of the issue list wraps down to 10em in the sidebar layout, which leaves more room for the other columns.
+- A list that is still too wide scrolls sideways inside its wrapper, and its right edge fades while there is more to scroll to.
+
 ## [2.0.0] - 2026-11-02
 
 ### Changed
