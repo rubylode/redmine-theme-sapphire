@@ -40,6 +40,7 @@ The screenshots come from the demo Redmine in this repository; the people, proje
 - [What is covered](#what-is-covered)
 - [Rubylode plugins](#rubylode-plugins)
 - [Customising](#customising)
+- [Fonts](#fonts)
 - [Dark mode](#dark-mode)
 - [Accessibility](#accessibility)
 - [Compatibility](#compatibility)
@@ -119,6 +120,7 @@ start with `--theme-` and are the same in every Rubylode theme. The main ones:
 | `--theme-success`, `--theme-warning`, `--theme-danger`, `--theme-danger-strong` | meaning colours (the priority arrows High, Urgent and Immediate) |
 | `--theme-radius-small`, `--theme-radius`, `--theme-radius-panel`, `--theme-radius-pill` | corners of fields, cards, panels and pills |
 | `--theme-border-width`, `--theme-border-style`, `--theme-density` | panel borders, and the height of table rows and list items |
+| `--theme-font-size` | the size of running text (16px); every other text size follows it |
 | `--theme-font`, `--theme-font-monospace`, `--theme-title-font`, `--theme-title-weight` | the text, code and heading fonts |
 
 The rest (messages, avatars, diffs, the Gantt chart, the header heights, the icons drawn in the stylesheet) are listed with a
@@ -132,6 +134,14 @@ Immediate, trackers 1 Bug to 3 Support). If yours differ, change the ids in the 
 `sapphire/stylesheets/structure.css` and in the second section of `flourishes.css`.
 
 The labels "Parent" and "Ancestor" above an issue's subject are drawn by CSS, so they are in English only.
+
+## Fonts
+
+Sapphire ships its own fonts, so text looks the same on every system and nothing is loaded from another site: Noto Sans for
+text and Noto Sans Mono for code, as woff2 files in `sapphire/fonts/` (latin and latin-ext). Both are under the SIL Open
+Font License 1.1; the licence texts are in the same folder. A browser downloads a file only when a page uses it. To use other
+fonts, change `--theme-font` and `--theme-font-monospace` in `sapphire/stylesheets/tokens.css`. The size of running text is
+`--theme-font-size` (16px), and every other text size follows it.
 
 ## Dark mode
 
