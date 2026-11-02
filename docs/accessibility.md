@@ -7,7 +7,7 @@ identify it (field borders), for focus indicators and for the priority arrows, w
 
 - The page check (`npm run check`) loads 29 pages in light and dark, at 1280px and 390px wide, and measures every visible
   piece of text against the colour stacked behind it. On 2026-11-02 against Redmine 7.0.2 with the Rubylode plugins mounted it
-  measured 5,484 text pairs across the 58 desktop runs and 6,490 across the 58 phone runs, and found none below AA: 116 of 116
+  measured 5,684 text pairs across the 58 desktop runs and 6,690 across the 58 phone runs, and found none below AA: 116 of 116
   gated runs clean.
 - The tokens, one pair at a time, below (`tokens.css` and `dark.css`). The check skips text over a gradient or an image, and it
   does not see field borders, focus rings or the arrows, so those are measured here. Chip colours are the mixes the stylesheet
@@ -70,6 +70,7 @@ identify it (field borders), for focus indicators and for the priority arrows, w
 | Priority arrow (graphic) High, on a stripe | `#d9531f` | `#f7f8f9` | 3.79 |
 | Priority arrow (graphic) Urgent, on a stripe | `#c9372c` | `#f7f8f9` | 4.86 |
 | Priority arrow (graphic) Immediate, on a stripe | `#ae2e24` | `#f7f8f9` | 6.14 |
+| White on an assignee initials badge, lowest of the six | `#ffffff` | `#1f845a` | 4.66 |
 
 ## Dark
 
@@ -126,6 +127,7 @@ identify it (field borders), for focus indicators and for the priority arrows, w
 | Priority arrow (graphic) High, on a stripe | `#f38a3f` | `#22272b` | 6.11 |
 | Priority arrow (graphic) Urgent, on a stripe | `#f87168` | `#22272b` | 5.42 |
 | Priority arrow (graphic) Immediate, on a stripe | `#f87168` | `#22272b` | 5.42 |
+| White on an assignee initials badge, lowest of the six | `#ffffff` | `#1f845a` | 4.66 |
 
 ## Not covered
 

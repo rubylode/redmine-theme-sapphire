@@ -2,9 +2,10 @@
 
 A light theme for Redmine 7 and up: a white page with one blue, a project sidebar on wide screens, square corners and dense lists with status lozenges and priority arrows.
 
-It is plain CSS plus one small script (`javascripts/theme.js`, about 45 lines), with no plugin, no build step and no change to
-Redmine itself. The script only reads the page: it puts a status dot beside the group name in an issue list grouped by status,
-and gives the top bar a shadow once the page scrolls. Without it the theme still works. The dark set follows your system setting
+It is plain CSS plus one small script (`javascripts/theme.js`), with no plugin, no build step and no change to Redmine itself.
+The script only reads the page: it puts a status dot beside the group name in an issue list grouped by status, gives the top bar a
+shadow once the page scrolls, puts round initials beside the assignee in issue lists and on the issue page, and adds a breadcrumb
+above the page title. Without it the theme still works, with plainer lists. The dark set follows your system setting
 (see [Dark mode](#dark-mode)). It is built on the shared Rubylode theme base, which also gives it the pages and plugin blocks
 listed below.
 
@@ -55,7 +56,9 @@ The screenshots come from the demo Redmine in this repository; the people, proje
 - A New issue button beside the search, when the Rubylode New issue button plugin is installed.
 - Corners are 3 or 4 pixels, panels are flat and set apart by thin lines, and the one shadow is on things that float, such as menus.
 - Lists have a header band, hairlines, thin column lines and faint stripes. In the issue list the status is a small upper-case
-  lozenge, the priority is an arrow in front of its name, and the tracker is a coloured square.
+  lozenge, the priority is an arrow in front of its name, the tracker is a coloured square, and the assignee is a round badge
+  with their initials (the name is its tooltip). On the issue page the initials sit beside the name.
+- A breadcrumb above the page title, `Projects / Atlas`, on every page that belongs to a project.
 - An issue is a flat card with an edge in the status colour, a labelled attribute panel and a card per note in the history.
 - The phone slide-out menu is dark, in light mode too.
 

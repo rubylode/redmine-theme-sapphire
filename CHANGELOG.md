@@ -22,6 +22,8 @@ All notable changes to this theme. The format follows [Keep a Changelog](https:/
 - Styles for the pages 1.0.0 did not cover: the roadmap, subtasks and child issues, the Gantt chart, the calendar, spent time, project settings, administration and the wiki editor.
 - The Rubylode plugins' blocks take the theme's colours: Projects, Home, To-do, Uptime Kuma, GlitchTip, Windmill, Beszel, Stats and the New issue button.
 - A status dot beside the group name in an issue list grouped by status.
+- The round initials beside the assignee in issue lists, as in 1.0.0, and now on the issue page too, where the name stays visible beside them. Their six colours are `--theme-initials-tone-*` tokens.
+- The breadcrumb above the page title, as in 1.0.0. Both now come from the theme's own part of `javascripts/theme.js`.
 - The overdue date in a list takes the danger ink, which reaches AA in dark mode where Redmine's own red does not.
 - `docs/accessibility.md` with the measured contrast ratios in light and dark.
 - Screenshots and walkthroughs from the new demo data, with the plugin pages in them.
@@ -29,7 +31,6 @@ All notable changes to this theme. The format follows [Keep a Changelog](https:/
 
 ### Removed
 
-- The initials beside the assignee and the breadcrumb above the page title. They came from the old script, which the shared one replaces.
 - The to-do and wiki screenshots; the walkthrough still shows both pages.
 
 ### Token names
