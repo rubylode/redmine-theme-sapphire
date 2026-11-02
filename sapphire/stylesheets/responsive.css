@@ -21,5 +21,6 @@
 @import url(/responsive.css);
 @import url(structure.css);
 @import url(plugins.css);
+@import url(sidebar-layout.css);
 @import url(dark.css);
 @import url(flourishes.css);

@@ -63,6 +63,16 @@
   --theme-header-field-border: #8590a2;
   --theme-mark-image: none;
 
+  /* The project sidebar, in the sidebar layout only ("layout": "sidebar" in theme.json). */
+  --theme-sidebar-width: 240px;
+  --theme-sidebar-background: var(--theme-surface-sunken);
+  --theme-sidebar-line: var(--theme-line);
+  --theme-sidebar-tile: linear-gradient(135deg, var(--theme-accent-6), var(--theme-secondary));
+  --theme-sidebar-hover-background: var(--theme-line-soft);
+  --theme-sidebar-selected-background: var(--theme-accent-0);
+  --theme-sidebar-selected-ink: var(--theme-accent-8);
+  --theme-sidebar-selected-edge: var(--theme-accent-6);
+
   /* Buttons that are not the primary: a light grey. Delete buttons: a tint of red. */
   --theme-button-background: #f1f2f4;
   --theme-button-border: #dcdfe4;

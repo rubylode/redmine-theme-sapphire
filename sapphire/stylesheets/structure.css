@@ -534,6 +534,9 @@ table.list tr.group[data-group-status="3"] span.name::before { background: var(-
 table.list tr.group[data-group-status="4"] span.name::before { background: var(--theme-status-feedback); }
 table.list tr.group[data-group-status="6"] span.name::before { background: var(--theme-status-rejected); }
 
+/* An overdue due date: Redmine's own red (--oc-red-9) is too dark on a dark surface, so it takes the danger ink. */
+table.list tr.overdue:not(.context-menu-selection) td.due_date { color: var(--theme-danger-ink); }
+
 /* Filters and options: light panels; Apply and Clear as buttons */
 #query_form fieldset, #query_form_with_buttons fieldset {
   margin-block-end: 10px;
@@ -1279,8 +1282,10 @@ body .task.label.overdue { color: var(--theme-danger-ink); }
 /* ==========================================================================
    16. Administration and settings
    ========================================================================== */
-#admin-menu a, #admin-menu a:visited { color: var(--theme-link); }
-#admin-menu a.selected, #admin-menu a.selected:hover { background: var(--theme-surface-hover); color: var(--theme-accent-8); font-weight: 650; border-radius: var(--theme-radius-small); }
+/* The admin menu's colours are for the page (#main). On phones Redmine copies the sidebar, and the admin menu with it, into the
+   slide-out menu, which has its own colours; :where() keeps the specificity of a plain "#admin-menu a". */
+:where(#main) #admin-menu a, :where(#main) #admin-menu a:visited { color: var(--theme-link); }
+:where(#main) #admin-menu a.selected, :where(#main) #admin-menu a.selected:hover { background: var(--theme-surface-hover); color: var(--theme-accent-8); font-weight: 650; border-radius: var(--theme-radius-small); }
 #admin-menu a .icon-svg, #admin-menu a svg.icon-svg { stroke: currentColor; }
 .controller-admin.action-index #admin-menu ul li a, #admin-index #admin-menu ul li a { padding: 6px 8px; border-radius: var(--theme-radius-small); }
 .controller-admin.action-index #admin-menu ul li a:hover { background: var(--theme-surface-hover); text-decoration: none; }

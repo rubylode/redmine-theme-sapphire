@@ -23,6 +23,7 @@
  *   responsive.css     Redmine's phone rules, then
  *                        structure.css     the page blocks: header, lists, the issue page, forms, everything else
  *                        plugins.css       the Rubylode plugins' custom properties pointed at the tokens
+ *                        sidebar-layout.css the project menu as a sidebar down the left, from 1100px up
  *                        dark.css          the dark values, from the system setting
  *                        flourishes.css    Rubylode Sapphire's own touches that tokens cannot express
  *

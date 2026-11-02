@@ -3,187 +3,13 @@
  * GNU General Public License, version 2 or later. See the LICENSE file.
  * Generated from the shared base of the Rubylode themes: a change made here is overwritten by the next build. */
 
-/* Sapphire's own touches, the ones tokens cannot express. Four things:
- *  1. From 1100px up, the project and its menu are a sidebar down the left and the global links, search and account are a bar
- *     across the top. Narrower screens and the sign-in page keep the base's header.
- *  2. Status is a square-cornered lozenge and priority is an arrow, in the issue list; the tracker is a small coloured square.
- *  3. The phone slide-out menu is dark in both schemes.
- *  4. A fix for the overdue date in a list, until the base has one. */
+/* Sapphire's own touches, the ones tokens cannot express. The project sidebar is the base's sidebar layout ("layout": "sidebar"
+ * in theme.json), so two things are left here:
+ *  1. Status is a square-cornered lozenge and priority is an arrow, in the issue list; the tracker is a small coloured square.
+ *  2. The phone slide-out menu is dark in both schemes. */
 
 /* ==========================================================================
-   1. The sidebar layout
-   The header's and the top menu's children become grid items of the page wrapper, so the base's rows are switched off here.
-   ========================================================================== */
-@media screen and (min-width: 1100px) {
-  body:not(.controller-account) #wrapper {
-    display: grid;
-    grid-template-columns: var(--sapphire-sidebar-width, 240px) minmax(0, 1fr) auto auto;
-    grid-template-rows: auto auto auto 1fr auto;
-    grid-template-areas:
-      "top    top  search profile"
-      "brand  main main   main"
-      "menu   main main   main"
-      "filler main main   main"
-      "filler footer footer footer";
-    background: linear-gradient(
-      to right,
-      var(--theme-surface-sunken) calc(var(--sapphire-sidebar-width, 240px) - 1px),
-      var(--theme-line) calc(var(--sapphire-sidebar-width, 240px) - 1px) var(--sapphire-sidebar-width, 240px),
-      var(--theme-page) var(--sapphire-sidebar-width, 240px)
-    );
-  }
-  body:not(.controller-account) #header, body:not(.controller-account) nav#top-menu.top-menu { display: contents; }
-  body:not(.controller-account) nav#top-menu.top-menu::before { display: none; }
-
-  /* The top bar: three grid items in one row, each painted on its own. */
-  body:not(.controller-account) nav#top-menu .general-menu {
-    grid-area: top;
-    display: flex;
-    align-items: center;
-    min-block-size: var(--theme-top-bar-height);
-    margin: 0;
-    padding: 0 12px;
-    background: var(--theme-header-background);
-    border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-header-line);
-  }
-  body:not(.controller-account) .top-menu__links ul { flex-direction: row; gap: 2px; }
-  body:not(.controller-account) #header #quick-search {
-    grid-area: search;
-    position: static;
-    inset: auto;
-    float: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    block-size: auto;
-    min-block-size: var(--theme-top-bar-height);
-    margin: 0;
-    padding: 0 8px;
-    background: var(--theme-header-background);
-    border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-header-line);
-  }
-  body:not(.controller-account) #header #quick-search input[type=text] { inline-size: 200px; padding-inline-start: 32px; }
-  body:not(.controller-account) #header #quick-search #project-jump.drdn { inline-size: 160px; }
-  body:not(.controller-account) nav#top-menu .profile-menu {
-    grid-area: profile;
-    display: flex;
-    align-items: center;
-    inline-size: auto;
-    min-block-size: var(--theme-top-bar-height);
-    margin: 0;
-    padding: 0 16px 0 4px;
-    background: var(--theme-header-background);
-    border-block-end: var(--theme-border-width) var(--theme-border-style) var(--theme-header-line);
-  }
-  body.page-scrolled:not(.controller-account) nav#top-menu .general-menu,
-  body.page-scrolled:not(.controller-account) #header #quick-search,
-  body.page-scrolled:not(.controller-account) nav#top-menu .profile-menu { box-shadow: var(--theme-shadow-header-scrolled); }
-
-  /* The sidebar: a tile and the project name, then its menu. */
-  body:not(.controller-account) #header h1,
-  body:not(.controller-account):not(.has-main-menu) #header h1 {
-    grid-area: brand;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 2px 10px;
-    max-inline-size: none;
-    min-block-size: 0;
-    padding: 16px 16px 10px;
-    background: transparent;
-    color: var(--theme-ink);
-    font-size: 1.0625rem;
-    font-weight: 600;
-    text-align: start;
-  }
-  body:not(.controller-account) #header h1::before {
-    content: "";
-    flex: none;
-    inline-size: 32px;
-    block-size: 32px;
-    border-radius: var(--theme-radius-small);
-    background: linear-gradient(135deg, var(--theme-accent-6), var(--theme-secondary));
-  }
-  body:not(.controller-account) #header h1 .breadcrumbs { display: none; }
-  body:not(.controller-account) #main-menu {
-    grid-area: menu;
-    position: static;
-    overflow: visible;
-    padding: 8px 8px 14px;
-    background: transparent;
-  }
-  body:not(.controller-account) #main-menu .tabs-buttons { display: none; }
-  body:not(.controller-account) #main-menu ul { flex-direction: column; align-items: stretch; gap: 1px; min-block-size: 0; }
-  body:not(.controller-account) #main-menu li { display: block; margin: 0; padding: 0; }
-  body:not(.controller-account) #main-menu li a {
-    display: block;
-    block-size: auto;
-    padding: 7px 12px;
-    border: 0;
-    border-radius: var(--theme-radius-small);
-    color: var(--theme-header-link);
-    font-weight: 500;
-  }
-  body:not(.controller-account) #main-menu li a:hover { background: var(--theme-line-soft); color: var(--theme-ink); text-decoration: none; }
-  body:not(.controller-account) #main-menu li a.selected,
-  body:not(.controller-account) #main-menu li a.selected:hover {
-    border: 0;
-    background: var(--theme-accent-0);
-    color: var(--theme-accent-8);
-    font-weight: 600;
-    box-shadow: inset 3px 0 0 var(--theme-accent-6);
-  }
-  /* The "+" menu is the sidebar's one button, and it opens to the right of the sidebar, not over the items below it. */
-  body:not(.controller-account) #main-menu li:has(> a.new-object) { position: relative; margin: 0; padding: 0 0 10px; }
-  body:not(.controller-account) #main-menu li a.new-object,
-  body:not(.controller-account) #main-menu li a.new-object:hover {
-    block-size: auto;
-    padding: 7px 12px;
-    border: 0;
-    border-radius: var(--theme-radius-small);
-    background: var(--theme-primary-background);
-    color: var(--theme-ink-on-primary);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
-    text-align: center;
-    box-shadow: none;
-  }
-  body:not(.controller-account) #main-menu li a.new-object:hover { background: var(--theme-primary-background-hover); }
-  body:not(.controller-account) #main-menu li:has(> a.new-object) .menu-children {
-    inset-block: 0 auto;
-    inset-inline: calc(100% - 4px) auto;
-    inline-size: 220px;
-    margin: 0;
-    padding: 6px;
-  }
-  body:not(.controller-account) #main-menu .menu-children li a { padding: 7px 10px; background: transparent; color: var(--theme-ink); }
-  body:not(.controller-account) #main-menu .menu-children li a:hover { background: var(--theme-surface-hover); color: var(--theme-accent-8); }
-
-  body:not(.controller-account) #main { grid-area: main; }
-  body:not(.controller-account) #footer { grid-area: footer; }
-  /* The profile dropdown opens downwards from the top bar, aligned to the right edge. */
-  body:not(.controller-account) #account .dropdown-content { inset-inline: auto 0; }
-
-  /* Administration: the admin menu takes the project menu's place. Subpages keep it in the right-hand sidebar, which moves to the
-     left; the index keeps it in the page, so the page contents become grid items of the wrapper. */
-  body:not(.controller-account):has(#admin-menu) #main { display: contents; }
-  body:not(.controller-account):has(#admin-menu) #sidebar { grid-area: menu; inline-size: auto; padding: 8px 8px 14px; border: 0; background: transparent; }
-  body:not(.controller-account):has(#admin-menu) #sidebar #sidebar-wrapper { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
-  body:not(.controller-account):has(#admin-menu) #sidebar-switch-panel { display: none; }
-  body:not(.controller-account):has(#admin-menu) #sidebar h3 { padding-inline: 12px; }
-  body:not(.controller-account):has(#admin-menu) #content { grid-area: main; min-inline-size: 0; }
-  body:not(.controller-account):has(#content #admin-menu) #content { display: contents; }
-  body:not(.controller-account):has(#content #admin-menu) #content > h2 { grid-area: main; margin: 0; padding: 24px 32px 0; }
-  body:not(.controller-account):has(#content #admin-menu) #admin-menu { grid-area: menu; padding: 8px 8px 14px; background: transparent; }
-  #admin-menu a, #sidebar #admin-menu a { display: block; padding: 7px 12px; border-radius: var(--theme-radius-small); }
-  #admin-menu a:hover { background: var(--theme-line-soft); color: var(--theme-ink); text-decoration: none; }
-  #admin-menu a.selected, #admin-menu a.selected:hover { background: var(--theme-accent-0); color: var(--theme-accent-8); box-shadow: inset 3px 0 0 var(--theme-accent-6); }
-}
-
-/* ==========================================================================
-   2. The issue list: a square-cornered lozenge for the status, an arrow for the priority, a square for the tracker
+   1. The issue list: a square-cornered lozenge for the status, an arrow for the priority, a square for the tracker
    ========================================================================== */
 table.list.issues > tbody > tr.issue {
   --lozenge-height: 20px;
@@ -269,18 +95,12 @@ table.list.issues td.tracker::before {
 }
 
 /* ==========================================================================
-   3. The phone slide-out menu: dark in both schemes
+   2. The phone slide-out menu: dark in both schemes
    ========================================================================== */
 body .flyout-menu { background-color: #1d2125; color: #c7d1db; }
 body .flyout-menu h3 { background-color: rgba(255, 255, 255, 0.07); border-block-color: #1d2125; color: #b6c2cf; }
 body .flyout-menu a, body .flyout-menu a:link, body .flyout-menu a:visited, body .flyout-menu .icon-label { color: #c7d1db; }
-body .flyout-menu a.selected, body .flyout-menu a.selected:link, body .flyout-menu a.selected:hover,
-body .flyout-menu #admin-menu a.selected, body .flyout-menu #admin-menu a.selected:hover { background: transparent; color: #cce0ff; box-shadow: none; }
+body .flyout-menu a.selected, body .flyout-menu a.selected:link, body .flyout-menu a.selected:hover { background: transparent; color: #cce0ff; box-shadow: none; }
 body .flyout-menu a:hover { color: #ffffff; }
 body .flyout-menu ul li { border-block-color: #2c333a; }
 body .flyout-menu .flyout-menu__avatar { background: #2c333a; }
-
-/* ==========================================================================
-   4. Overdue dates in a list take the danger ink, which reaches AA in both schemes (Redmine's own red does not in dark)
-   ========================================================================== */
-table.list tr.overdue:not(.context-menu-selection) td.due_date { color: var(--theme-danger-ink); }
