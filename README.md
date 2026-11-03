@@ -1,5 +1,7 @@
 # Rubylode Sapphire for Redmine
 
+<p><img src="docs/thumbnail.png" alt="Rubylode Sapphire theme" width="160"></p>
+
 A light theme for Redmine 7 and up: a white page with one blue, a project sidebar on wide screens, square corners and dense lists with status lozenges and priority arrows.
 
 It is plain CSS plus one small script (`javascripts/theme.js`), with no plugin, no build step and no change to Redmine itself.
